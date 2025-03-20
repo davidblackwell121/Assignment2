@@ -1,16 +1,17 @@
-package com.example.Assignment2.model;
+package com.example.Assignment2.model; // Exists within the model package
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
-import lombok.*;
+import jakarta.persistence.*; // Imports JPA annotations for ORM
+import jakarta.validation.constraints.NotEmpty; // Import NotEmpty validation annotation
+import lombok.*; // Imports Lombok annotations to reduce boilerplate code
+
 import java.util.Set;
 
-@Entity
-@Table(name = "employees")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Entity // Marks Employee class as a JPA entity in the database
+@Table(name = "employees") // Specifies the table name in the database
+@Getter // Lombok automatically generates getter methods
+@Setter // Lombok automatically generates getter methods
+@NoArgsConstructor // Lombok annotation to generate a no-argument constructor
+@AllArgsConstructor // Lombok annotation to generate a constructor with all fields
 @ToString
 
 public class Employee {
@@ -28,8 +29,8 @@ public class Employee {
 
     private boolean employmentType; // true = full-time and false = part-time
 
-    @ElementCollection
-    @CollectionTable(name = "employee_departments", joinColumns = @JoinColumn(name = "employee_id"))
-    @Column(name = "department")
-    private Set<String> departments;
+    @ElementCollection // Specifies that the departments are stored as a collection
+    @CollectionTable(name = "employee_departments", joinColumns = @JoinColumn(name = "employee_id")) // // Defines the table and column for departments
+    @Column(name = "department") // Specifies the column name for departments
+    private Set<String> departments; // Set of departments the employee is in
 }
