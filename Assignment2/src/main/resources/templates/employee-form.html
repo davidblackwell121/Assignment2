@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Employee Registration</title>
 </head>
 <body>
@@ -17,10 +18,11 @@
         <label for="designation">Designation:</label>
         <select id="designation" th:field="*{designation}" required>
             <option value="">Select Designation</option>
+            <option value="Marketing Specialist">Marketing Specialist</option>
             <option value="Software Engineer">Software Engineer</option>
-            <option value="Senior Engineer">Senior Engineer</option>
-            <option value="Manager">Manager</option>
-            <option value="Director">Director</option>
+            <option value="UI/UX Designer">UI/UX Designer</option>
+            <option value="Technical Support Engineer">Technical Support Engineer</option>
+            <option value="Data Scientist">Data Scientist</option>
         </select>
         <span th:if="${#fields.hasErrors('designation')}" th:errors="*{designation}"></span>
         <br>

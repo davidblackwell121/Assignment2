@@ -11,15 +11,15 @@ public class SalaryService {
 
     public SalaryService() {
         // Define salary based on employee designation
-        salaryMap.put("Software Engineer", 70000.0);
-        salaryMap.put("Senior Engineer", 90000.0);
-        salaryMap.put("Manager", 110000.0);
-        salaryMap.put("Director", 130000.0);
+        salaryMap.put("Marketing Specialist", 70000.0);
+        salaryMap.put("Software Engineer", 90000.0);
+        salaryMap.put("UI/UX Designer", 110000.0);
+        salaryMap.put("Technical Support Engineer", 130000.0);
+        salaryMap.put("Data Scientist", 130000.0);
     }
 
-    // Returns the appropriate salary or
-    // Creates a default salary if designation isn't found
+    // Returns the appropriate salary based on designation
     public double calculateSalary(String designation) {
-        return salaryMap.getOrDefault(designation, 50000.0);
+        return salaryMap.get(designation);
     }
 }
