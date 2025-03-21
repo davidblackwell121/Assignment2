@@ -10,6 +10,6 @@ public class DepartmentService {
     // Returns a list of predefined department names
     public List<String> getAllDepartments() {
         // Returns the array of departments as a list
-        return Arrays.asList("Software Engineer", "UI/UX Design", "Data Science", "Marketing", "Technical Support");
+        return Arrays.asList("Software Engineering", "UI/UX Design", "Data Science", "Marketing", "Technical Support");
     }
 }

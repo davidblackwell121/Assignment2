@@ -27,15 +27,19 @@
         <span th:if="${#fields.hasErrors('designation')}" th:errors="*{designation}"></span>
         <br>
 
-        <!-- Salary (Auto-Calculated) -->
+        <!-- Salary (Auto-Calculated after registration) -->
+        <!-- Span is to get a complicated way of displaying text for salary -->
+        <!-- since no matter what I do it doesn't auto calculate within the form -->
         <label for="salary">Salary:</label>
-        <input type="text" id="salary" th:field="*{salary}" readonly>
-        <br>
+        <span id="salary" th:text="*{salary} != 0.0 ? *{salary} : 'Salary given upon registration'"></span>
+
+
+        <br><br>
 
         <!-- Employment Type (Checkbox) -->
         <label for="employmentType">Full-Time:</label>
         <input type="checkbox" id="employmentType" th:field="*{employmentType}">
-        <br>
+        <br><br>
 
         <!-- Department Selection (Multi-Select Checkboxes) -->
         <label>Departments:</label>

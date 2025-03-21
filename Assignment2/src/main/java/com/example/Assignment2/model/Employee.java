@@ -27,7 +27,7 @@ public class Employee {
 
     public double salary; // Will be auto calculated based on designation
 
-    private boolean employmentType; // true = full-time and false = part-time
+    private boolean employmentType = true; // true = full-time (1) and false = part-time (0)
 
     @ElementCollection // Specifies that the departments are stored as a collection
     @CollectionTable(name = "employee_departments", joinColumns = @JoinColumn(name = "employee_id")) // // Defines the table and column for departments
