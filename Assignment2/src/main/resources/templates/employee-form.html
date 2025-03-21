@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Employee Registration</title>
+</head>
+<body>
+    <h2>Employee Registration</h2>
+
+    <form th:action="@{/employees/register}" th:object="${employee}" method="post">
+        <!-- Name -->
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}" required>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+        <br>
+
+        <!-- Designation Dropdown -->
+        <label for="designation">Designation:</label>
+        <select id="designation" th:field="*{designation}" required>
+            <option value="">Select Designation</option>
+            <option value="Software Engineer">Software Engineer</option>
+            <option value="Senior Engineer">Senior Engineer</option>
+            <option value="Manager">Manager</option>
+            <option value="Director">Director</option>
+        </select>
+        <span th:if="${#fields.hasErrors('designation')}" th:errors="*{designation}"></span>
+        <br>
+
+        <!-- Salary (Auto-Calculated) -->
+        <label for="salary">Salary:</label>
+        <input type="text" id="salary" th:field="*{salary}" readonly>
+        <br>
+
+        <!-- Employment Type (Checkbox) -->
+        <label for="employmentType">Full-Time:</label>
+        <input type="checkbox" id="employmentType" th:field="*{employmentType}">
+        <br>
+
+        <!-- Department Selection (Multi-Select Checkboxes) -->
+        <label>Departments:</label>
+        <div th:each="dept : ${departments}">
+            <label>
+                <input type="checkbox" th:value="${dept}" th:field="*{departments}">
+                <span th:text="${dept}"></span>
+            </label>
+        </div>
+        <br>
+
+        <!-- Submit Button -->
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>
