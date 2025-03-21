@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> <!-- Declares Thymeleaf namespace -->
 <head>
     <meta charset="UTF-8">
     <title>Employee List</title>
+    <!-- CSS styling to give employee list a border and cleaner look -->
     <style>
         table {
             border-collapse: collapse;
@@ -21,6 +22,7 @@
 <body>
     <h2>Employee List</h2>
 
+    <!-- Table containing the list of employees currently in the database -->
     <table>
         <tr>
             <th>ID</th>
@@ -30,6 +32,7 @@
             <th>Employment Type</th>
             <th>Departments</th>
         </tr>
+        <!-- Displays information of each employee based on what was provided in the registration form -->
         <tr th:each="employee : ${employees}">
             <td th:text="${employee.id}"></td>
             <td th:text="${employee.name}"></td>
@@ -42,6 +45,6 @@
         </tr>
     </table>
     <br>
-    <a th:href="@{/employees/register}">Register New Employee</a>
+    <a th:href="@{/employees/register}">Register New Employee</a> <!-- Link to go back to the registration form -->
 </body>
 </html>
