@@ -24,18 +24,8 @@ public class EmployeeService {
         return employeeRepository.findAll(); // Uses findAll method to retrieve all the employees
     }
 
-    // Get an employee by their ID number
-    public Optional<Employee> getEmployeeById(Long id) {
-        return employeeRepository.findById(id); // Finds employee using ID
-    }
-
     // Save a new employee to the database
     public Employee saveEmployee(Employee employee) {
         return employeeRepository.save(employee);
-    }
-
-    // Delete an employee by their ID
-    public void deleteEmployee(Long id) {
-        employeeRepository.deleteById(id); // Deletes employee using ID
     }
 }
