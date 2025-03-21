@@ -32,5 +32,6 @@ public class Employee {
     @ElementCollection // Specifies that the departments are stored as a collection
     @CollectionTable(name = "employee_departments", joinColumns = @JoinColumn(name = "employee_id")) // // Defines the table and column for departments
     @Column(name = "department") // Specifies the column name for departments
+    @NotEmpty(message = "Please select at least one department") // Ensures at least one department is selected
     private Set<String> departments; // Set of departments the employee is in
 }

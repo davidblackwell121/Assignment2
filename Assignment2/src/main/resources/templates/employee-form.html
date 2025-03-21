@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> <!-- Declares Thymeleaf namespace -->
 <head>
     <meta charset="UTF-8">
     <title>Employee Registration</title>
@@ -7,14 +7,15 @@
 <body>
     <h2>Employee Registration</h2>
 
+    <!-- Employee registration form using /register endpoint -->
     <form th:action="@{/employees/register}" th:object="${employee}" method="post">
-        <!-- Name -->
+        <!-- Name field (required) -->
         <label for="name">Name:</label>
         <input type="text" id="name" th:field="*{name}" required>
         <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
         <br>
 
-        <!-- Designation Dropdown -->
+        <!-- Designation Dropdown (required), salary calculated based on designation -->
         <label for="designation">Designation:</label>
         <select id="designation" th:field="*{designation}" required>
             <option value="">Select Designation</option>
@@ -31,28 +32,54 @@
         <!-- Span is to get a complicated way of displaying text for salary -->
         <!-- since no matter what I do it doesn't auto calculate within the form -->
         <label for="salary">Salary:</label>
-        <span id="salary" th:text="*{salary} != 0.0 ? *{salary} : 'Salary given upon registration'"></span>
+        <span id="salary" th:text="*{salary} != 0.0 ? *{salary} : 'Given upon registration'"></span>
 
 
         <br><br>
 
-        <!-- Employment Type (Checkbox) -->
+        <!-- Employment Type (Checkbox) Full-time = true, Part-time = false -->
         <label for="employmentType">Full-Time:</label>
         <input type="checkbox" id="employmentType" th:field="*{employmentType}">
         <br><br>
 
-        <!-- Department Selection (Multi-Select Checkboxes) -->
+        <!-- Department Selection (Multi-Select Checkboxes)(required) -->
         <label>Departments:</label>
         <div th:each="dept : ${departments}">
             <label>
-                <input type="checkbox" th:value="${dept}" th:field="*{departments}">
+                <input type="checkbox" th:value="${dept}" th:field="*{departments}" class="deptCheckbox">
                 <span th:text="${dept}"></span>
             </label>
         </div>
+        <!-- Error message placeholder, default to hidden -->
+        <span id="deptError" style="color: red; display: none;">Please select at least one department.</span>
         <br>
 
-        <!-- Submit Button -->
-        <button type="submit">Register</button>
+        <!-- Registration Button -->
+        <button type="submit" id="submitBtn">Register</button>
+
+        <!-- JavaScript to handle department selection error after trying to submit -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var submitBtn = document.getElementById("submitBtn");
+                var checkboxes = document.querySelectorAll(".deptCheckbox");
+                var deptError = document.getElementById("deptError");
+
+                function validateDepartments(event) {
+                    var isChecked = Array.from(checkboxes).some(function (checkbox) {
+                        return checkbox.checked;
+                    });
+
+                    if (!isChecked) {
+                        event.preventDefault(); // Prevent form submission
+                        deptError.style.display = "inline"; // Show error message
+                    } else {
+                        deptError.style.display = "none"; // Hide error message if valid
+                    }
+                }
+
+                submitBtn.addEventListener("click", validateDepartments);
+            });
+        </script>
     </form>
 </body>
 </html>
